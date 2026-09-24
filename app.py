@@ -52,9 +52,20 @@ for i, (col, val) in enumerate(zip(colonnes, defauts)):
 
 # Bouton de prédiction
 if st.button("Prédire la classe"):
+
     classe = predire_classe(valeurs)
 
     if classe == -1:
-        st.warning("Client atypique (anomalie) : il ne ressemble à aucune classe.")
-    else:
-        st.success("Ce client appartient à la " + noms_classes[classe])
+
+        st.warning(
+            "⚠️ Client atypique (anomalie) : "
+            "il ne ressemble à aucune classe."
+        )
+
+    elif classe == 0:
+
+        st.success("✅ Ce client est fidèle.")
+
+    elif classe == 1:
+
+        st.error("❌ Ce client est non fidèle.")
